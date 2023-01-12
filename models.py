@@ -3,7 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 
-# Build the neural network, expand on top of nn.Module
+# Simple convolutional neural network for embedding the fashion MNIST dataset
 class Network(nn.Module):
   def __init__(self):
     super().__init__()
@@ -24,11 +24,9 @@ class Network(nn.Module):
         nn.MaxPool2d(kernel_size=2, stride=2)
     )
 
-    # define layers
     self.fc1 = nn.Linear(in_features=160, out_features=80)
     self.fc2 = nn.Linear(in_features=80, out_features=80)
 
-  # define forward function
   def forward(self, t):
     # conv 1
     t = self.conv_layers(t)
